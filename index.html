@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Un regalo para ti 🌻</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+
+    background:
+        radial-gradient(circle at 50% 20%, #fff3a3 0%, transparent 18%),
+        linear-gradient(135deg, #20152e, #432b4f, #15152d);
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+
+    animation: brillo 2s infinite alternate;
+}
+
+.star:nth-child(1) {
+    top: 10%;
+    left: 12%;
+}
+
+.star:nth-child(2) {
+    top: 20%;
+    left: 85%;
+    animation-delay: .5s;
+}
+
+.star:nth-child(3) {
+    top: 65%;
+    left: 8%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(4) {
+    top: 75%;
+    left: 90%;
+    animation-delay: .3s;
+}
+
+.star:nth-child(5) {
+    top: 15%;
+    left: 50%;
+    animation-delay: .8s;
+}
+
+.star:nth-child(6) {
+    top: 85%;
+    left: 45%;
+    animation-delay: 1.2s;
+}
+
+@keyframes brillo {
+    from {
+        opacity: .2;
+        transform: scale(.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 700px;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 5;
+}
+
+.title {
+    font-size: clamp(26px, 6vw, 45px);
+    color: #ffe45c;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 10px rgba(255,220,60,.6);
+}
+
+.subtitle {
+    font-size: clamp(15px, 3vw, 19px);
+
+    color: #fff8d8;
+
+    margin-bottom: 35px;
+}
+
+/* =========================
+   CAJA
+========================= */
+
+.gift-area {
+    height: 330px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+/* Caja completa */
+
+.gift {
+    width: 190px;
+    height: 140px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    margin-top: 80px;
+
+    transition: transform .4s;
+}
+
+.gift:hover {
+    transform: scale(1.05);
+}
+
+/* Parte inferior */
+
+.box {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 190px;
+    height: 120px;
+
+    background: linear-gradient(
+        135deg,
+        #ffca28,
+        #f59e0b
+    );
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.35);
+}
+
+/* Franja vertical */
+
+.box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 100%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #fff1a6;
+}
+
+/* Tapa */
+
+.lid {
+    position: absolute;
+
+    width: 210px;
+    height: 45px;
+
+    left: -10px;
+    top: 0;
+
+    background: linear-gradient(
+        135deg,
+        #ffd83d,
+        #f6a900
+    );
+
+    border-radius: 5px;
+
+    z-index: 10;
+
+    transition:
+        transform 1s ease,
+        top 1s ease;
+}
+
+/* Franja tapa */
+
+.lid::after {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 100%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #fff1a6;
+}
+
+/* =========================
+   MOÑO
+========================= */
+
+.bow {
+    position: absolute;
+
+    top: -38px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 15;
+
+    transition:
+        transform 1s ease;
+}
+
+.ribbon-left,
+.ribbon-right {
+    position: absolute;
+
+    width: 60px;
+    height: 45px;
+
+    background: #ffe45c;
+
+    border-radius: 50% 50% 10% 50%;
+}
+
+.ribbon-left {
+    right: 8px;
+
+    transform: rotate(25deg);
+}
+
+.ribbon-right {
+    left: 8px;
+
+    transform: rotate(-25deg);
+
+    border-radius: 50% 50% 50% 10%;
+}
+
+.knot {
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    background: #ffca28;
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 10px;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+}
+
+/* =========================
+   FLORES QUE APARECEN
+========================= */
+
+.flowers {
+    position: absolute;
+
+    left: 50%;
+    top: 20px;
+
+    transform: translateX(-50%);
+
+    width: 300px;
+    height: 260px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition:
+        opacity .5s ease,
+        transform 1s ease;
+}
+
+.flower {
+    position: absolute;
+
+    font-size: 55px;
+
+    filter:
+        drop-shadow(0 0 8px #ffd83d);
+
+    animation: flotar 3s ease-in-out infinite;
+}
+
+.flower:nth-child(1) {
+    left: 10px;
+    top: 70px;
+}
+
+.flower:nth-child(2) {
+    left: 110px;
+    top: 10px;
+
+    font-size: 75px;
+
+    animation-delay: .3s;
+}
+
+.flower:nth-child(3) {
+    right: 5px;
+    top: 75px;
+
+    animation-delay: .7s;
+}
+
+.flower:nth-child(4) {
+    left: 60px;
+    top: 120px;
+
+    font-size: 45px;
+
+    animation-delay: 1s;
+}
+
+.flower:nth-child(5) {
+    right: 55px;
+    top: 130px;
+
+    font-size: 45px;
+
+    animation-delay: 1.3s;
+}
+
+@keyframes flotar {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(5deg);
+    }
+}
+
+/* =========================
+   CORAZONES
+========================= */
+
+.hearts {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+.heart {
+    position: absolute;
+
+    font-size: 25px;
+
+    animation: subir 3s linear infinite;
+}
+
+.heart:nth-child(1) {
+    left: 15%;
+    animation-delay: .2s;
+}
+
+.heart:nth-child(2) {
+    left: 35%;
+    animation-delay: .8s;
+}
+
+.heart:nth-child(3) {
+    left: 65%;
+    animation-delay: 1.4s;
+}
+
+.heart:nth-child(4) {
+    left: 82%;
+    animation-delay: 2s;
+}
+
+@keyframes subir {
+
+    0% {
+        bottom: 0;
+        opacity: 0;
+        transform: scale(.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        bottom: 280px;
+        opacity: 0;
+        transform: scale(1.3);
+    }
+}
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message {
+    position: absolute;
+
+    width: min(90%, 600px);
+
+    left: 50%;
+    bottom: -10px;
+
+    transform:
+        translateX(-50%)
+        translateY(30px);
+
+    opacity: 0;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+    pointer-events: none;
+}
+
+.message h2 {
+    color: #ffe45c;
+
+    font-size: clamp(23px, 5vw, 35px);
+
+    margin-bottom: 12px;
+}
+
+.message p {
+    font-size: clamp(15px, 3vw, 19px);
+
+    line-height: 1.7;
+
+    color: #fff9df;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+.button {
+    border: none;
+
+    padding: 14px 30px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe45c,
+            #ffb300
+        );
+
+    color: #402700;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(255,190,40,.35);
+
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-3px) scale(1.04);
+}
+
+/* =========================
+   ESTADO ABIERTO
+========================= */
+
+.open .lid {
+    transform:
+        rotate(-15deg)
+        translateY(-100px)
+        translateX(-15px);
+}
+
+.open .bow {
+    transform:
+        translateX(-50%)
+        translateY(-110px)
+        rotate(-10deg);
+}
+
+.open .flowers {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(-100px);
+}
+
+.open .hearts {
+    opacity: 1;
+}
+
+.open .message {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+.open .gift {
+    transform: translateY(30px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .title {
+        margin-top: 5px;
+    }
+
+    .subtitle {
+        margin-bottom: 15px;
+    }
+
+    .gift-area {
+        height: 310px;
+    }
+
+    .gift {
+        transform: scale(.85);
+    }
+
+    .gift:hover {
+        transform: scale(.88);
+    }
+
+    .open .gift {
+        transform:
+            translateY(20px)
+            scale(.85);
+    }
+
+    .open .flowers {
+        transform:
+            translateX(-50%)
+            translateY(-80px)
+            scale(.8);
+    }
+
+    .message {
+        bottom: -20px;
+    }
+
+    .button {
+        font-size: 15px;
+
+        padding: 13px 25px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .gift {
+        transform: scale(.72);
+    }
+
+    .gift:hover {
+        transform: scale(.75);
+    }
+
+    .open .gift {
+        transform:
+            translateY(20px)
+            scale(.72);
+    }
+
+    .gift-area {
+        height: 280px;
+    }
+
+    .message p {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ESTRELLAS -->
+
+<div class="stars">
+
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+
+</div>
+
+
+<div class="container">
+
+    <h1 class="title">
+        Tengo un regalo para ti 🌻
+    </h1>
+
+    <p class="subtitle">
+        Hay regalos que no necesitan envoltura...
+        pero este quería preparártelo especialmente. 💛
+    </p>
+
+
+    <div class="gift-area">
+
+        <!-- FLORES -->
+
+        <div class="flowers">
+
+            <span class="flower">🌻</span>
+            <span class="flower">🌻</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌻</span>
+            <span class="flower">🌼</span>
+
+        </div>
+
+
+        <!-- CORAZONES -->
+
+        <div class="hearts">
+
+            <span class="heart">💛</span>
+            <span class="heart">💛</span>
+            <span class="heart">💛</span>
+            <span class="heart">💛</span>
+
+        </div>
+
+
+        <!-- CAJA -->
+
+        <div class="gift" id="gift">
+
+            <div class="box"></div>
+
+            <div class="lid"></div>
+
+            <div class="bow">
+
+                <div class="ribbon-left"></div>
+                <div class="ribbon-right"></div>
+                <div class="knot"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENSAJE -->
+
+        <div class="message">
+
+            <h2>Para ti, con mucho cariño 💛</h2>
+
+            <p>
+                Te regalo estas flores amarillas
+                porque quería recordarte que hay
+                personas que hacen más bonito
+                nuestro mundo simplemente con existir.
+                <br><br>
+
+                Que nunca te falten motivos para sonreír,
+                sueños por cumplir y flores que te recuerden
+                lo especial que eres. 🌻
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button class="button" id="button">
+        🎁 Abrir regalo
+    </button>
+
+</div>
+
+
+<script>
+
+const gift = document.getElementById("gift");
+const button = document.getElementById("button");
+
+function abrirRegalo() {
+
+    document.body.classList.toggle("open");
+
+    if (document.body.classList.contains("open")) {
+
+        button.innerHTML =
+            "💛 Cerrar regalo";
+
+    } else {
+
+        button.innerHTML =
+            "🎁 Abrir regalo";
+
+    }
+}
+
+
+/* Abrir tocando la caja */
+
+gift.addEventListener("click", abrirRegalo);
+
+
+/* También funciona con el botón */
+
+button.addEventListener("click", abrirRegalo);
+
+</script>
+
+</body>
+</html>
+```
